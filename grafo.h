@@ -1,5 +1,6 @@
 #ifndef _GRAFO_H
 #define _GRAFO_H
+#define INF 9999999
 
 int VERTICES;
 int ARESTAS;

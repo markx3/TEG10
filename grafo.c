@@ -270,9 +270,9 @@ int esta_no_vetor(int *vetor, int vertice) {
 }
 
 int *dijsktra(int **matriz, int origem) {
-	origem--;
-	double inf = 9999999;
-	int min = 0, aux = 9999999;
+	origem--; // p/ tratar na matriz
+	double inf = INF;
+	int min = 0, aux = INF;
 	int *set = NULL;
 	int *prev = NULL;
 	int *dist = NULL;
@@ -292,7 +292,7 @@ int *dijsktra(int **matriz, int origem) {
 	printf("Vertices: %d\n", VERTICES);
 
 	while(!verifica_vetor_vazio(set)) {
-		min = 9999999;
+		min = INF;
 		for (i = 0; i < VERTICES; i++) {
 			if (dist[i] < min && set[i]) {
 				 min = dist[i];
