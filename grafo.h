@@ -32,7 +32,7 @@ void exclusaoId(int **matriz, int d);
 void insercaoId(int **matriz, int d);
 void matrAdjComplemento(int **matriz);
 int fleury(int **matriz, int v);
-int *dijsktra(int **matriz, int origem);
+int *dijkstra(int **matriz, int origem);
 int esta_no_vetor(int *vetor, int vertice);
 int verifica_vetor_cheio(int *vetor);
 

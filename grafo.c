@@ -269,7 +269,8 @@ int esta_no_vetor(int *vetor, int vertice) {
 	else return 1;
 }
 
-int *dijsktra(int **matriz, int origem) {
+
+int *dijkstra(int **matriz, int origem) {
 	origem--; // p/ tratar na matriz
 	double inf = INF;
 	int min = 0, aux = INF;
@@ -280,7 +281,7 @@ int *dijsktra(int **matriz, int origem) {
 	if(!(set = (int*)calloc(VERTICES, sizeof(int))))exit(0);
 	if(!(prev = (int*)malloc(sizeof(int)*VERTICES)))exit(0);
 	if(!(dist = (int*)malloc(sizeof(int)*VERTICES)))exit(0);
-	int i;
+	int i, counter = inf;
 
 	for (i = 0; i < VERTICES; i++) {
 		dist[i] = inf;
@@ -289,7 +290,6 @@ int *dijsktra(int **matriz, int origem) {
 	}
 	dist[origem] = 0;
 	int u = 0, v = 0;
-	printf("Vertices: %d\n", VERTICES);
 
 	while(!verifica_vetor_vazio(set)) {
 		min = INF;
@@ -302,7 +302,7 @@ int *dijsktra(int **matriz, int origem) {
 		set[u] = 0;
 		int alt = 0;
 		for (i = 0; i < VERTICES; i++) {
-			if(matriz[u][i] != 0 && set[i]) {
+			if((matriz[u][i] != 0) && set[i]) {
 				alt = dist[u] + matriz[u][i];
 				if (alt < dist[i]) {
 					dist[i] = alt;

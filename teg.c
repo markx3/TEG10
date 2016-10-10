@@ -96,7 +96,7 @@ int main(void) {
 
 					int *dij = NULL;
 					scanf("%i", &v);
-					if (matriz != NULL) dij = dijsktra(matriz, v);
+					if (matriz != NULL) dij = dijkstra(matriz, v);
 					int j = 0;
 					for (; j < VERTICES; j++) printf("%d\n", dij[j]);
 					free(dij);
