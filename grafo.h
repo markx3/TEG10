@@ -35,6 +35,7 @@ int fleury(int **matriz, int v);
 int *dijkstra(int **matriz, int origem);
 int esta_no_vetor(int *vetor, int vertice);
 int verifica_vetor_cheio(int *vetor);
+int *bfs(int **matriz, int orig);
 
 
 #endif
