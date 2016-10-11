@@ -93,13 +93,22 @@ int main(void) {
 					break;
 				case 7:
 					printf("Selecione um vértice de origem.\n");
-
-					int *dij = NULL;
+					int **dij = NULL;
 					scanf("%i", &v);
 					if (matriz != NULL) dij = dijkstra(matriz, v);
-					int j = 0;
-					for (; j < VERTICES; j++) printf("%d\n", dij[j]);
+					int j = 0, k = 0;
+					printf("\n");
+					for (j = 0 ; j < 2; j++) {
+						for (k = 0 ; k < VERTICES; k++) {
+							if (dij[j][k] != INF) printf("%d\t", dij[j][k]);
+							else printf("Infinito ");
+						}
+						printf("\n");
+					}
+					printf("\n");
+					for (j = 0; j < 2; j++) free(dij[j]);
 					free(dij);
+
 					break;
 				case 0:
 					return 0;

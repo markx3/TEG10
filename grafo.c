@@ -1,5 +1,4 @@
 #include "grafo.h"
-#include "lista.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -270,42 +269,7 @@ int esta_no_vetor(int *vetor, int vertice) {
 	else return 1;
 }
 
-int *bfs(int **matriz, int orig) {
-	int i = 0;
-	int atual = 0;
-	int *dist = NULL;
-	int *parents = NULL;
-	if(!(dist = (int*)calloc(VERTICES, sizeof(int))))exit(0);
-	if(!(parents = (int*)calloc(VERTICES, sizeof(int))))exit(0);
-	for ( ; i < VERTICES; i++) {
-		dist[i] = INF;
-		parents[i] = -1;
-	}
-	Lista lista;
-	inicializa_lista(&lista, sizeof(int));
-	dist[orig] = 0;
-	void *aux = NULL;
-	aux = (void*)orig;
-	insereNoFim(&lista, aux);
-	printf("oi\n");
-	while(!lista_vazia(lista)) {
-
-		removeDoInicio(&lista, (void*)atual);
-		for (i = 0; i < VERTICES; i++) {
-			if (matriz[atual][i] != 0) {
-				if (dist[i] == INF) {
-					dist[i] = dist[atual] + 1;
-					parents[i] = atual;
-					insereNoFim(&lista, (void*)i);
-				}
-			}
-		}
-	}
-	return dist;
-}
-
-
-int *dijkstra(int **matriz, int origem) {
+int **dijkstra(int **matriz, int origem) {
 	origem--; // p/ tratar na matriz
 	double inf = INF;
 	int min = 0, aux = INF;
@@ -325,9 +289,6 @@ int *dijkstra(int **matriz, int origem) {
 	}
 	dist[origem] = 0;
 	int u = 0, v = 0;
-	int *bfs_matriz = NULL;
-	//bfs_matriz = bfs(matriz, origem);
-	printf("oie\n");
 	while(!verifica_vetor_vazio(set)) {
 			min = INF;
 			for (i = 0; i < VERTICES; i++) {
@@ -346,8 +307,12 @@ int *dijkstra(int **matriz, int origem) {
 						prev[i] = u;
 					}
 				}
-				//if (bfs_matriz[u] == INF) set[u] = 0;
 			}
+			if (counter-- == 0) break;
 	}
-	return dist;
+	int **ret = NULL;
+	if(!(ret = (int**)malloc(sizeof(int*))))exit(0);
+	ret[0] = dist;
+	ret[1] = prev;
+	return ret;
 }
